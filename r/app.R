@@ -2,6 +2,7 @@ library(tidyverse)
 library(RSQLite)
 library(lubridate)
 library(shiny)
+library(shinythemes)
 library(plotly)
 
 # set this file equal to db file created from create_db.py
@@ -53,9 +54,11 @@ daterange <- getdf.sqlite(datequery)
 
 # App Code Start
 ui <- fluidPage(
-  #Title Panel
-  titlePanel("Power Use Analysis"),
-  
+  # setting top bar and theme
+  tags$style(type="text/css", "body {padding-top: 70px;}"),
+  theme = shinytheme("cerulean"),
+  navbarPage("Power Use Analysis", position = "fixed-top"),
+
   # Row for DB Downlaod button
   fluidRow(
     column(12, actionButton("getdata", "Load DB Data", class = "btn-lg btn-success")
